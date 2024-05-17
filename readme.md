@@ -11,6 +11,7 @@ We're cool as long as we can view your solution without any pain.
 
 ## How to run ##
 ### Problem 1
-`cd src/problem1`
-
-`node solution.js`
+```
+cd src/problem1
+node solution.js
+```
