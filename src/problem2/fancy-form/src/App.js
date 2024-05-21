@@ -9,6 +9,7 @@ import {
   Transition,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import CurrencyIcon from "./components/CurrencyIcon";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -90,7 +91,7 @@ function App() {
               min="0"
               value={inputAmount}
               onChange={handleInputAmountChange}
-              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="pl-2 placeholder:text-lg block w-full h-10 text-lg rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
             <div className="absolute inset-y-0 right-0 flex items-center">
               <label htmlFor="input-currency" className="sr-only">
@@ -99,6 +100,7 @@ function App() {
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <CurrencyIcon currency={inputCurrency} />
                     {inputCurrency}
                     <ChevronDownIcon
                       className="-mr-1 h-5 w-5 text-gray-400"
@@ -116,21 +118,26 @@ function App() {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <MenuItems className="overflow-y-auto max-h-80 absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <MenuItems className="overflow-y-auto max-h-80 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                       {prices.map((value, index) => (
                         <MenuItem key={index}>
                           {({ active }) => (
                             <div
+                              className="flex items-center space-x-4 p-2 hover:bg-gray-100 cursor-pointer pl-4"
                               onClick={() => setInputCurrency(value.currency)}
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                "block px-4 py-2 text-sm"
-                              )}
                             >
-                              {value.currency}
+                              <CurrencyIcon currency={value.currency} />
+                              <div
+                                className={classNames(
+                                  active
+                                    ? "text-gray-900 font-medium"
+                                    : "text-gray-700",
+                                  "text-sm"
+                                )}
+                              >
+                                {value.currency}
+                              </div>
                             </div>
                           )}
                         </MenuItem>
@@ -156,7 +163,7 @@ function App() {
               min="0"
               value={outputAmount}
               onChange={handleOutputAmountChange}
-              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="pl-2 block h-10 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
             <div className="absolute inset-y-0 right-0 flex items-center">
               <label htmlFor="output-currency" className="sr-only">
@@ -165,6 +172,7 @@ function App() {
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <CurrencyIcon currency={outputCurrency} />
                     {outputCurrency}
                     <ChevronDownIcon
                       className="-mr-1 h-5 w-5 text-gray-400"
@@ -182,21 +190,26 @@ function App() {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <MenuItems className="overflow-y-auto max-h-80 absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <MenuItems className="overflow-y-auto max-h-80 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                       {prices.map((value, index) => (
                         <MenuItem key={index}>
                           {({ active }) => (
                             <div
+                              className="flex items-center space-x-4 p-2 hover:bg-gray-100 cursor-pointer pl-4"
                               onClick={() => setOutputCurrency(value.currency)}
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-gray-900"
-                                  : "text-gray-700",
-                                "block px-4 py-2 text-sm"
-                              )}
                             >
-                              {value.currency}
+                              <CurrencyIcon currency={value.currency} />
+                              <div
+                                className={classNames(
+                                  active
+                                    ? "text-gray-900 font-medium"
+                                    : "text-gray-700",
+                                  "text-sm"
+                                )}
+                              >
+                                {value.currency}
+                              </div>
                             </div>
                           )}
                         </MenuItem>
